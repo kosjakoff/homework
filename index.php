@@ -1,20 +1,20 @@
 # homework
 <?php
 
-function transformToBinary($decimalNumber) {            // преобразование в бинарное число  
-	$i = abs($decimalNumber);			//модуль числа
+function transformToBinary($decimalNumber) {              
+	$absValue = abs($decimalNumber);		
 	do {
-		$result = ($i % 2) . $result;
-		$i = intdiv($i, 2);			//результат целочисленного деления
-	} while ($i != 0);
-	if ($decimalNumber < 0) {			// для отрицательных чисел
+		$result = ($absValue % 2) . $result;
+		$absValue = intdiv($absValue, 2);		
+	} while ($absValue != 0);
+	if ($decimalNumber < 0) {			
 		$result = "-" . $result; 
 	}
 	return $result;
 }
 						   
-function transformToDecimal($binaryNumber) {           		//преобразование в десятичное число
-	$binaryArray = str_split(abs($binaryNumber));      	//бинарное число преобразуется в массив символов
+function transformToDecimal($binaryNumber) {           		
+	$binaryArray = str_split(abs($binaryNumber));      	
 	$degree = count($binaryArray);
 	foreach ($binaryArray as $value){  
 		$result = $result + $value * (2 ** --$degree);
@@ -23,7 +23,7 @@ function transformToDecimal($binaryNumber) {           		//преобразов�
 }
 
 
-function getFibonacci ($limit) {				//число Фибоначчи
+function getFibonacci ($limit) {				
 	for ($i = 0; $i <= abs($limit); $i++) {
 		if ($i <= 1) {
 			$result[$i] = $i;
@@ -32,7 +32,7 @@ function getFibonacci ($limit) {				//число Фибоначчи
 			$result[$i] = $result[$i - 1] + $result[$i - 2];
 		}
 	}
-	if ($limit < 0) {					//для отрицательных чисел
+	if ($limit < 0) {					
 		foreach ($result as $key => $value){	
 			$result[$key] = $value * (-1);
 		}
@@ -41,23 +41,21 @@ function getFibonacci ($limit) {				//число Фибоначчи
 }
 
 
-function getPower ($enteredNumber, $power){  			//возведения числа N в степень M
+function getPower ($enteredNumber, $power){  			
 	$result = 1;
 	for ($i = 1; $i <= abs($power); $i++) {
 		$result = $result * $enteredNumber;
 	}
-	if ($power <= 0) {                    			//если степень отрицательная или "0"
+	if ($power <= 0) {                    			
 		$result = 1 / $result;
 	}
 	return $result;
 }
 
 
-//Написать функцию которая вычисляет входит ли IP-адрес в диапазон указанных IP-адресов. Вычислить для версии ipv4
-
 function isIpInRange($enteredIp, $startIp, $endIp) {
-	$start = sprintf("%u", ip2long($startIp));  		//приводим к десятичному представлению
-    $end = sprintf("%u", ip2long($endIp));
+	$start = sprintf("%u", ip2long($startIp));  
+	$end = sprintf("%u", ip2long($endIp));
 	for ($i = $start; $i <= $end; $i++) {
 		if (sprintf("%u", ip2long($startIp)) == $i) {
 			return true;
@@ -155,8 +153,7 @@ function sortArrayDown ($inputArray) {					//Отсортировать элем
 
 /* Для двумерных массивов */
 
-function transposeMatrix($matrix) {					// Транспонировать матрицу
-	$result = array();
+function transposeMatrix($matrix) {				
 	for ($i = 0; $i < count($matrix); $i++) {
 		for ($j = 0; $j < count($matrix[$i]); $j++) {
 			$result[$j][$i] = $matrix[$i][$j];
@@ -165,12 +162,12 @@ function transposeMatrix($matrix) {					// Транспонировать мат
 	return $result;
 }
 
-function sumMatrices ($matrix1, $matrix2) {				//Сложить две матрицы
-	if (count($matrix1) != count($matrix2)) {			//если не совпадает число строк
+function sumMatrices ($matrix1, $matrix2) {				
+	if (count($matrix1) != count($matrix2)) {	
 		return false;
 	}
 	for ($i = 0; $i < count($matrix1); $i++) {
-		if (count($matrix1[$i]) != count($matrix2[$i])) {	//если не совпадает число столбцов
+		if (count($matrix1[$i]) != count($matrix2[$i])) {	
 			return false;
 		}
 		for ($j = 0; $j < count($matrix1[$i]); $j++) {
