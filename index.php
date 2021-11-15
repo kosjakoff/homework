@@ -248,6 +248,35 @@ function printFibonacciByRecursion($limit) {					//вывод чисел
 	}
 }
 
+//Отсортировать элементы по возрастанию by RECURSION 
+function sortArrayUpByRecursion($array, $low, $high) {		//метод быстрой сортировки
+	$i = $low;                
+	$j = $high;
+	$middle = $array[($low + $high) / 2];  // middle — опорный элемент, посередине между low и high
+	do {
+		while($array[$i] < $middle) {
+			++$i;
+		}  
+		while($array[$j] > $middle) {
+			--$j;
+		}  
+		if($i <= $j){
+			$temp = $array[$i];
+			$array[$i] = $array[$j];
+			$array[$j] = $temp;
+			$i++; 
+			$j--;
+		}
+	} while($i < $j);
+        if($low < $j){
+		$array = sortArrayUpByRecursion($array, $low, $j);
+	} 
+	if($i < $high){
+		$array = sortArrayUpByRecursion($array, $i, $high);
+	} 
+	return $array;
+}
+
 //суммирование матриц при помощи рекурсии
 function sumMatricesByRecursion ($array1, $array2) {
 	if (count($array1) != count($array2)) {				//если не совпадает число элементов
