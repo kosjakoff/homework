@@ -2,19 +2,19 @@
 <?php
 
 function transformToBinary($decimalNumber) {            // преобразование в бинарное число  
-	$i = abs($decimalNumber);							//модуль числа
+	$i = abs($decimalNumber);			//модуль числа
 	do {
 		$result = ($i % 2) . $result;
-		$i = intdiv($i, 2);								//результат целочисленного деления
+		$i = intdiv($i, 2);			//результат целочисленного деления
 	} while ($i != 0);
-	if ($decimalNumber < 0) {							// для отрицательных чисел
+	if ($decimalNumber < 0) {			// для отрицательных чисел
 		$result = "-" . $result; 
 	}
 	return $result;
 }
 						   
-function transformToDecimal($binaryNumber) {           //преобразование в десятичное число
-	$binaryArray = str_split(abs($binaryNumber));      //бинарное число преобразуется в массив символов
+function transformToDecimal($binaryNumber) {           		//преобразование в десятичное число
+	$binaryArray = str_split(abs($binaryNumber));      	//бинарное число преобразуется в массив символов
 	$degree = count($binaryArray);
 	foreach ($binaryArray as $value){  
 		$result = $result + $value * (2 ** --$degree);
@@ -23,7 +23,7 @@ function transformToDecimal($binaryNumber) {           //преобразова�
 }
 
 
-function getFibonacci ($limit) {						 //число Фибоначчи
+function getFibonacci ($limit) {				//число Фибоначчи
 	for ($i = 0; $i <= abs($limit); $i++) {
 		if ($i <= 1) {
 			$result[$i] = $i;
@@ -32,7 +32,7 @@ function getFibonacci ($limit) {						 //число Фибоначчи
 			$result[$i] = $result[$i - 1] + $result[$i - 2];
 		}
 	}
-	if ($limit < 0) {									//для отрицательных чисел
+	if ($limit < 0) {					//для отрицательных чисел
 		foreach ($result as $key => $value){	
 			$result[$key] = $value * (-1);
 		}
@@ -46,7 +46,7 @@ function getPower ($enteredNumber, $power){  			//возведения числ�
 	for ($i = 1; $i <= abs($power); $i++) {
 		$result = $result * $enteredNumber;
 	}
-	if ($power <= 0) {                    				  //если степень отрицательная или "0"
+	if ($power <= 0) {                    			//если степень отрицательная или "0"
 		$result = 1 / $result;
 	}
 	return $result;
@@ -56,7 +56,7 @@ function getPower ($enteredNumber, $power){  			//возведения числ�
 //Написать функцию которая вычисляет входит ли IP-адрес в диапазон указанных IP-адресов. Вычислить для версии ipv4
 
 function isIpInRange($enteredIp, $startIp, $endIp) {
-	$start = sprintf("%u", ip2long($startIp));  			//приводим к десятичному представлению
+	$start = sprintf("%u", ip2long($startIp));  		//приводим к десятичному представлению
     $end = sprintf("%u", ip2long($endIp));
 	for ($i = $start; $i <= $end; $i++) {
 		if (sprintf("%u", ip2long($startIp)) == $i) {
@@ -68,7 +68,7 @@ function isIpInRange($enteredIp, $startIp, $endIp) {
 
 /* Для одномерного массива */
 
-function calculatePositivePrecentage($inputArray) {				//Подсчитать процентное соотношение положительных чисел	
+function calculatePositivePrecentage($inputArray) {		//Подсчитать процентное соотношение положительных чисел	
 	if (count($inputArray > 0)) {
 		$positiveNumbers = 0;
 		for ($i = 0; $i < count($inputArray); $i++) {
@@ -81,7 +81,7 @@ function calculatePositivePrecentage($inputArray) {				//Подсчитать п
 	return false;
 }
 
-function calculateNegativePrecentage($inputArray) {				//Подсчитать процентное соотношение отрицательных чисел	
+function calculateNegativePrecentage($inputArray) {		//Подсчитать процентное соотношение отрицательных чисел	
 	if (count($inputArray > 0)) {
 		$negativeNumbers = 0;
 		for ($i = 0; $i < count($inputArray); $i++) {
@@ -94,7 +94,7 @@ function calculateNegativePrecentage($inputArray) {				//Подсчитать п
 	return false;
 }
 
-function calculateZeroPrecentage($inputArray) {					//Подсчитать процентное соотношение нулевых чисел	
+function calculateZeroPrecentage($inputArray) {			//Подсчитать процентное соотношение нулевых чисел	
 	if (count($inputArray > 0)) {
 		$zeroNumbers = 0;
 		for ($i = 0; $i < count($inputArray); $i++) {
@@ -107,7 +107,7 @@ function calculateZeroPrecentage($inputArray) {					//Подсчитать пр�
 	return false;
 }
 
-function calculatePrimePrecentage($inputArray) {			//Подсчитать процентное соотношение простых чисел	
+function calculatePrimePrecentage($inputArray) {		//Подсчитать процентное соотношение простых чисел	
 	if (count($inputArray > 0)) {
 		$primeNumbers = 0;
 		for ($i = 0; $i < count($inputArray); $i++) {
@@ -127,7 +127,7 @@ function calculatePrimePrecentage($inputArray) {			//Подсчитать про
 }
 
 
-function sortArrayUp ($inputArray) {								//Отсортировать элементы по возрастанию
+function sortArrayUp ($inputArray) {					//Отсортировать элементы по возрастанию
 	for ($i = 0; $i < count($inputArray) - 1; $i++) {
 		for ($j = 0; $j < count($inputArray)- $i - 1; $j++) {
 			if ($inputArray[$j] > $inputArray[$j+1]) {
@@ -140,7 +140,7 @@ function sortArrayUp ($inputArray) {								//Отсортировать эле�
 	return $inputArray;
 }
 
-function sortArrayDown ($inputArray) {								//Отсортировать элементы по убыванию
+function sortArrayDown ($inputArray) {					//Отсортировать элементы по убыванию
 	for ($i = 0; $i < count($inputArray) - 1; $i++) {
 		for ($j = 0; $j < count($inputArray)- $i - 1; $j++) {
 			if ($inputArray[$j] < $inputArray[$j+1]) {
@@ -155,7 +155,7 @@ function sortArrayDown ($inputArray) {								//Отсортировать эл�
 
 /* Для двумерных массивов */
 
-function transposeMatrix($matrix) {									// Транспонировать матрицу
+function transposeMatrix($matrix) {					// Транспонировать матрицу
 	$result = array();
 	for ($i = 0; $i < count($matrix); $i++) {
 		for ($j = 0; $j < count($matrix[$i]); $j++) {
@@ -165,12 +165,12 @@ function transposeMatrix($matrix) {									// Транспонировать м
 	return $result;
 }
 
-function sumMatrices ($matrix1, $matrix2) {							//Сложить две матрицы
-	if (count($matrix1) != count($matrix2)) {						//если не совпадает число строк
+function sumMatrices ($matrix1, $matrix2) {				//Сложить две матрицы
+	if (count($matrix1) != count($matrix2)) {			//если не совпадает число строк
 		return false;
 	}
 	for ($i = 0; $i < count($matrix1); $i++) {
-		if (count($matrix1[$i]) != count($matrix2[$i])) {			//если не совпадает число столбцов
+		if (count($matrix1[$i]) != count($matrix2[$i])) {	//если не совпадает число столбцов
 			return false;
 		}
 		for ($j = 0; $j < count($matrix1[$i]); $j++) {
@@ -180,7 +180,7 @@ function sumMatrices ($matrix1, $matrix2) {							//Сложить две мат
 	return $result;
 } 
 
-// Удалить те строки, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент. Аналогично для столбцов.
+// Удалить те строки, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент. 
 function deleteRows($matrix) {
 	for ($i = 0; $i < count($matrix); $i++) {
 		$flag = 0;
@@ -191,9 +191,9 @@ function deleteRows($matrix) {
 			}
 			$sumRow = $sumRow + $matrix[$i][$j];
 		}
-		if ($sumRow > 0 && $flag == 1) {                  			//удаление столбца
+		if ($sumRow > 0 && $flag == 1) {                  			//удаление строки
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
-				$matrix[$i][$j] = NULL;                 			  //для наглядности значение заменя. на NULL
+				$matrix[$i][$j] = NULL;                 		//для наглядности значение заменем на NULL
 			}
 		}
 	}
@@ -211,9 +211,9 @@ function deleteColumns($matrix) {
 			}
 			$sumColumn = $sumColumn + $matrix[$j][$i];
 		}
-		if ($sumColumn > 0 && $flag == 1) { 						   //удаление столбца
+		if ($sumColumn > 0 && $flag == 1) { 					//удаление столбца
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
-				$matrix[$j][$i] = NULL;								   //для наглядности значение заменя. на NULL
+				$matrix[$j][$i] = NULL;					//для наглядности значение заменяем на NULL
 			}
 		}
 	}
@@ -223,7 +223,7 @@ function deleteColumns($matrix) {
 /* РЕКУРСИИ */
 
 
-function transformToBinaryByRecursion($decimalNumber) {          // преобразование в бинарное число с помощью рекурсии 
+function transformToBinaryByRecursion($decimalNumber) {         			 // преобразование в бинарное число с помощью рекурсии 
 	$decimalNumber = abs($decimalNumber );						 // без привязки к знаку +,-
 	do {
 		$result = ($decimalNumber % 2);
@@ -233,7 +233,7 @@ function transformToBinaryByRecursion($decimalNumber) {          // преобр
 
 
 //Написать функцию которая выводит первые N чисел фибоначчи с помощью рекурсии 
-function printFibonacciByRecursion($limit) {					//вывод чисел
+function printFibonacciByRecursion($limit) {						//вывод чисел
 	function getFibonacciByRecursion($limit) {					//рекурсивная функция получения чисел Фибоначи
 		if ($limit == 0) {
 			return  0;
@@ -249,10 +249,10 @@ function printFibonacciByRecursion($limit) {					//вывод чисел
 }
 
 //Отсортировать элементы по возрастанию by RECURSION 
-function sortArrayUpByRecursion($array, $low, $high) {		//метод быстрой сортировки
+function sortArrayUpByRecursion($array, $low, $high) {				//метод быстрой сортировки
 	$i = $low;                
 	$j = $high;
-	$middle = $array[($low + $high) / 2];  // middle — опорный элемент, посередине между low и high
+	$middle = $array[($low + $high) / 2]; 					 // middle — опорный элемент, посередине между low и high
 	do {
 		while($array[$i] < $middle) {
 			++$i;
