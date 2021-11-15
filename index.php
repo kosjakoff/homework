@@ -236,10 +236,10 @@ function transformToBinaryByRecursion($decimalNumber) {          // преобр
 function printFibonacciByRecursion($limit) {					//вывод чисел
 	function getFibonacciByRecursion($limit) {					//рекурсивная функция получения чисел Фибоначи
 		if ($limit == 0) {
-			return $result[0] = 0;
+			return  0;
 		}
 		if ($limit == 1) {
-			return	$result[1] = 1;
+			return  1;
 		}
 		return getFibonacciByRecursion($limit - 1) + getFibonacciByRecursion($limit - 2);
 	}  
@@ -247,6 +247,20 @@ function printFibonacciByRecursion($limit) {					//вывод чисел
 		echo getFibonacciByRecursion($i) . ', ';	
 	}
 }
+
+//суммирование матриц при помощи рекурсии
+function sumMatricesByRecursion ($array1, $array2) {
+	if (count($array1) != count($array2)) {				//если не совпадает число элементов
+		return false;
+	}
+	for ($i = 0; $i < count($array1); $i++) {
+		if (is_array($array1[$i]) && is_array($array2[$i])) {
+			$result[$i] = sumMatricesByRecursion($array1[$i], $array2[$i]);
+		}
+		else $result[$i] = $array1[$i] + $array2[$i];
+	}
+	return $result;
+} 
 
 
 // Написать рекурсивную функцию которая будет обходить и выводить все значения любого массива и любого уровня вложенности
