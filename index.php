@@ -125,31 +125,28 @@ function calculatePrimePrecentage($inputArray) {		//Подсчитать про�
 }
 
 
-function sortArrayUp ($inputArray) {					//Отсортировать элементы по возрастанию
+/* Отсортировать элементы по возрастанию/убыванию (мой аналог usort() методом пузырька) */
+
+function sortArrayByUser ($inputArray, $compare) {
 	for ($i = 0; $i < count($inputArray) - 1; $i++) {
-		for ($j = 0; $j < count($inputArray)- $i - 1; $j++) {
-			if ($inputArray[$j] > $inputArray[$j+1]) {
+		for ($j = 0; $j < count($inputArray) - $i - 1; $j++) {
+			if ($compare($inputArray[$j], $inputArray[$j + 1]) > 0) {
 				$temp = $inputArray[$j];
-				$inputArray[$j] = $inputArray[$j+1];
-				$inputArray[$j+1] = $temp;
+				$inputArray[$j] = $inputArray[$j + 1];
+				$inputArray[$j + 1] = $temp;
 			}
 		}
 	}
 	return $inputArray;
 }
 
-function sortArrayDown ($inputArray) {					//Отсортировать элементы по убыванию
-	for ($i = 0; $i < count($inputArray) - 1; $i++) {
-		for ($j = 0; $j < count($inputArray)- $i - 1; $j++) {
-			if ($inputArray[$j] < $inputArray[$j+1]) {
-				$temp = $inputArray[$j];
-				$inputArray[$j] = $inputArray[$j+1];
-				$inputArray[$j+1] = $temp;
-			}
-		}
-	}
-	return $inputArray;
+function compareElements($element1, $element2) {  //функция сравнения
+    if ($element1 == $element2) {
+        return 0;
+    }
+    return ($element1 > $element2) ? -1 : 1;
 }
+
 
 /* Для двумерных массивов */
 
@@ -247,29 +244,29 @@ function printFibonacciByRecursion($limit) {						//вывод чисел
 
 //Отсортировать элементы по возрастанию by RECURSION 
 function sortArrayUpByRecursion($array, $low, $high) {				//метод быстрой сортировки
-	$i = $low;                
-	$j = $high;
+	$indexLeft = $low;                
+	$indexRight = $high;
 	$middle = $array[($low + $high) / 2]; 					 // middle — опорный элемент, посередине между low и high
 	do {
-		while($array[$i] < $middle) {
-			++$i;
+		while($array[$indexLeft] < $middle) {
+			++$indexLeft;
 		}  
-		while($array[$j] > $middle) {
-			--$j;
+		while($array[$indexRight] > $middle) {
+			--$indexRight;
 		}  
-		if($i <= $j){
-			$temp = $array[$i];
-			$array[$i] = $array[$j];
-			$array[$j] = $temp;
-			$i++; 
-			$j--;
+		if($indexLeft <= $indexRight){
+			$temp = $array[$indexLeft];
+			$array[$indexLeft] = $array[$indexRight];
+			$array[$indexRight] = $temp;
+			$indexLeft++; 
+			$$indexRight--;
 		}
-	} while($i < $j);
-        if($low < $j){
-		$array = sortArrayUpByRecursion($array, $low, $j);
+	} while($indexLeft < $indexRight);
+        if($low < $indexRight){
+		$array = sortArrayUpByRecursion($array, $low, $indexRight);
 	} 
-	if($i < $high){
-		$array = sortArrayUpByRecursion($array, $i, $high);
+	if($indexLeft < $high){
+		$array = sortArrayUpByRecursion($array, $indexLeft, $high);
 	} 
 	return $array;
 }
