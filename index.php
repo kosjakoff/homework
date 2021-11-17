@@ -64,65 +64,37 @@ function isIpInRange($enteredIp, $startIp, $endIp) {
 	return false;
 }
 
-/* Для одномерного массива */
-
-function calculatePositivePrecentage($inputArray) {		//Подсчитать процентное соотношение положительных чисел	
+/* Для одномерного массива 
+Подсчитать процентное соотношение положительных/отрицательных/нулевых/простых чисел */
+ 
+function calculatePrecentageByUser($inputArray, $conditionFunctoin) {
 	if (count($inputArray > 0)) {
-		$positiveNumbers = 0;
+		$elementNumbers = 0;
 		for ($i = 0; $i < count($inputArray); $i++) {
-			if ($inputArray[$i] > 0) { 
-				$positiveNumbers++;
+			if ($conditionFunctoin($inputArray[$i])) {
+				$elementNumbers++;
 			}
 		}
-		return (int)($positiveNumbers * 100 / count($inputArray));
+		return (int)($elementNumbers * 100 / count($inputArray));
 	}
 	return false;
 }
 
-function calculateNegativePrecentage($inputArray) {		//Подсчитать процентное соотношение отрицательных чисел	
-	if (count($inputArray > 0)) {
-		$negativeNumbers = 0;
-		for ($i = 0; $i < count($inputArray); $i++) {
-			if ($inputArray[$i] < 0) { 
-				$negativeNumbers++;
-			}
-		}
-		return (int)($negativeNumbers * 100 / count($inputArray));
-	}
-	return false;
-}
+/* функция проверки соответствия элементов условию,
+закоментированы различные условия */
 
-function calculateZeroPrecentage($inputArray) {			//Подсчитать процентное соотношение нулевых чисел	
-	if (count($inputArray > 0)) {
-		$zeroNumbers = 0;
-		for ($i = 0; $i < count($inputArray); $i++) {
-			if ($inputArray[$i] == 0) { 
-				$zeroNumbers++;
-			}
+function isCorrespondCondition($element) {
+	//return ($element > 0);  
+	//return ($element < 0);
+	//return ($element === 0);
+	$tempCount = 0;
+	for ($i = 1; $i < $element; $i++) { 
+		if ($element % $i == 0) {
+			$tempCount++;
 		}
-		return (int)($zeroNumbers  * 100 / count($inputArray));
 	}
-	return false;
-}
-
-function calculatePrimePrecentage($inputArray) {		//Подсчитать процентное соотношение простых чисел	
-	if (count($inputArray > 0)) {
-		$primeNumbers = 0;
-		for ($i = 0; $i < count($inputArray); $i++) {
-			$tempCount = 0;
-			for ($j = 2; $j <= $inputArray[$i]; $j++) { 
-				if ($inputArray[$i] % $j == 0) {
-					$tempCount++;
-				}
-			}
-			if ($tempCount == 1) {
-				$primeNumbers++;
-			}
-		}
-		return (int)($primeNumbers  * 100 / count($inputArray));
-	}
-	return false;
-}
+	return($tempCount === 1);
+} 
 
 
 /* Отсортировать элементы по возрастанию/убыванию (мой аналог usort() методом пузырька) */
@@ -185,9 +157,9 @@ function deleteRows($matrix) {
 			}
 			$sumRow = $sumRow + $matrix[$i][$j];
 		}
-		if ($sumRow > 0 && $flag == 1) {                  			//удаление строки
+		if ($sumRow > 0 && $flag == 1) {
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
-				$matrix[$i][$j] = NULL;                 		//для наглядности значение заменем на NULL
+				$matrix[$i][$j] = NULL;
 			}
 		}
 	}
@@ -205,9 +177,9 @@ function deleteColumns($matrix) {
 			}
 			$sumColumn = $sumColumn + $matrix[$j][$i];
 		}
-		if ($sumColumn > 0 && $flag == 1) { 					//удаление столбца
+		if ($sumColumn > 0 && $flag == 1) {
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
-				$matrix[$j][$i] = NULL;					//для наглядности значение заменяем на NULL
+				$matrix[$j][$i] = NULL;	
 			}
 		}
 	}
@@ -215,10 +187,10 @@ function deleteColumns($matrix) {
 }
 
 /* РЕКУРСИИ */
+// преобразование в бинарное число с помощью рекурсии 
 
-
-function transformToBinaryByRecursion($decimalNumber) {         			 // преобразование в бинарное число с помощью рекурсии 
-	$decimalNumber = abs($decimalNumber );						 // без привязки к знаку +,-
+function transformToBinaryByRecursion($decimalNumber) {
+	$decimalNumber = abs($decimalNumber );
 	do {
 		$result = ($decimalNumber % 2);
 		return transformToBinary(intdiv($decimalNumber, 2)) . $result;
@@ -227,8 +199,8 @@ function transformToBinaryByRecursion($decimalNumber) {         			 // прео�
 
 
 //Написать функцию которая выводит первые N чисел фибоначчи с помощью рекурсии 
-function printFibonacciByRecursion($limit) {						//вывод чисел
-	function getFibonacciByRecursion($limit) {					//рекурсивная функция получения чисел Фибоначи
+function printFibonacciByRecursion($limit) {
+	function getFibonacciByRecursion($limit) {
 		if ($limit == 0) {
 			return  0;
 		}
@@ -243,10 +215,10 @@ function printFibonacciByRecursion($limit) {						//вывод чисел
 }
 
 //Отсортировать элементы по возрастанию by RECURSION 
-function sortArrayUpByRecursion($array, $low, $high) {				//метод быстрой сортировки
+function sortArrayUpByRecursion($array, $low, $high) {	
 	$indexLeft = $low;                
 	$indexRight = $high;
-	$middle = $array[($low + $high) / 2]; 					 // middle — опорный элемент, посередине между low и high
+	$middle = $array[($low + $high) / 2]; 
 	do {
 		while($array[$indexLeft] < $middle) {
 			++$indexLeft;
@@ -273,7 +245,7 @@ function sortArrayUpByRecursion($array, $low, $high) {				//метод быст�
 
 //суммирование матриц при помощи рекурсии
 function sumMatricesByRecursion ($array1, $array2) {
-	if (count($array1) != count($array2)) {				//если не совпадает число элементов
+	if (count($array1) != count($array2)) {	
 		return false;
 	}
 	for ($i = 0; $i < count($array1); $i++) {
