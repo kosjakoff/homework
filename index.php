@@ -77,7 +77,7 @@ function calculatePrecentageByUser($inputArray, $conditionFunctoin) {
 		}
 		return (int)($elementNumbers * 100 / count($inputArray));
 	}
-	return false;
+	throw new Exception('Empty array()');
 }
 
 /* функция проверки соответствия элементов условию,
