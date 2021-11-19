@@ -149,15 +149,15 @@ function sumMatrices ($matrix1, $matrix2) {
 // Удалить те строки, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент. 
 function deleteRows($matrix) {
 	for ($i = 0; $i < count($matrix); $i++) {
-		$flag = 0;
+		$flag = false;
 		$sumRow = 0;
 		for ($j = 0; $j < count($matrix[$i]); $j++) {
 			if ($matrix[$i][$j] == 0) {
-				$flag = 1;
+				$flag = true;
 			}
 			$sumRow = $sumRow + $matrix[$i][$j];
 		}
-		if ($sumRow > 0 && $flag == 1) {
+		if ($sumRow > 0 && $flag) {
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
 				$matrix[$i][$j] = NULL;
 			}
@@ -169,15 +169,15 @@ function deleteRows($matrix) {
 // Удалить те столбцы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент
 function deleteColumns($matrix) {			
 	for ($i = 0; $i < count($matrix); $i++) {
-		$flag = 0;
+		$flag = false;
 		$sumColumn = 0;
 		for ($j = 0; $j < count($matrix[$i]); $j++) {
 			if ($matrix[$j][$i] == 0) {
-				$flag = 1;
+				$flag = true;
 			}
 			$sumColumn = $sumColumn + $matrix[$j][$i];
 		}
-		if ($sumColumn > 0 && $flag == 1) {
+		if ($sumColumn > 0 && $flag) {
 			for ($j = 0; $j < count($matrix[$i]); $j++) {
 				$matrix[$j][$i] = NULL;	
 			}
@@ -273,3 +273,4 @@ function getAllArrayElements($array) {
 	echo ') <br>';
 	return true;
 }
+
