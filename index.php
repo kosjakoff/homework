@@ -133,11 +133,11 @@ function transposeMatrix($matrix) {
 
 function sumMatrices ($matrix1, $matrix2) {				
 	if (count($matrix1) != count($matrix2)) {	
-		return false;
+		throw new Exception('размеры матриц не совпадают');
 	}
 	for ($i = 0; $i < count($matrix1); $i++) {
 		if (count($matrix1[$i]) != count($matrix2[$i])) {	
-			return false;
+			throw new Exception('размеры матриц не совпадают');
 		}
 		for ($j = 0; $j < count($matrix1[$i]); $j++) {
 			$result[$i][$j] = $matrix1[$i][$j] + $matrix2[$i][$j];
@@ -273,7 +273,3 @@ function getAllArrayElements($array) {
 	echo ') <br>';
 	return true;
 }
-
-
-
-?>
