@@ -24,7 +24,7 @@ function transformToDecimal($binaryNumber) {
 
 
 function getFibonacci ($limit) {				
-	for ($i = 0; $i <= abs($limit); $i++) {
+	for ($i = 0; $i < abs($limit); $i++) {
 		if ($i <= 1) {
 			$result[$i] = $i;
 		}
