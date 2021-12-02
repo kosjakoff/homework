@@ -254,7 +254,7 @@ function deleteColumns(array $matrix): array {
 /* РЕКУРСИИ */
 // преобразование в бинарное число с помощью рекурсии 
 
-function transformToBinaryByRecursion(int $decimalNumber): int {
+function transformDecimalToBinaryByRecursion(int $decimalNumber): int {
     
     $decimalNumber = abs($decimalNumber );
     
@@ -264,7 +264,7 @@ function transformToBinaryByRecursion(int $decimalNumber): int {
     
     $result = ($decimalNumber % 2);
     
-    return transformToBinaryByRecursion(intdiv($decimalNumber, 2)) . $result;
+    return transformDecimalToBinaryByRecursion(intdiv($decimalNumber, 2)) . $result;
 }
 
 
