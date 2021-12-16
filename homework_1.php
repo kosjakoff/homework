@@ -266,43 +266,44 @@ function transformDecimalToBinaryByRecursion(int $decimalNumber): int {
 }
 
 
-/* first N Fibonacci numbers */
+/* first N Fibonacci numbers by Recursion */
 
 function printFibonacci(int $limit) {  
     if($limit === 0) {
-        echo 'Zero limit, Fibonacci array is empty!';
+        echo 'Zero limit, Fibonacci collect is empty!';
     }
-    
+        
     for ($i = 1; $i <= $limit; $i++) {
-        echo calculateFibonacciNumberByRecursion($i) . ', ';	
+        echo calcFibonacciRecursion($i) . ', ';	
     }
 }
-    
-function calculateFibonacciNumberByRecursion(int $limit) {
+
+function calcFibonacciRecursion(int $limit) {
     if ($limit <= 2) {
         return  $limit - 1;
     }
-    return calculateFibonacciNumberByRecursion($limit - 1) + calculateFibonacciNumberByRecursion($limit - 2);
+    return calcFibonacciRecursion($limit - 1) + calcFibonacciRecursion($limit - 2);
 }
+
 
 //  another variant 
 
-function calculateFibonacciByRecursion(int $limit, array $fibonacciNumbers = [0, 1]): array {
+
+function calculateFibonacciRecursion(int $limit, array $fibonacci = [0, 1]): array {
     
     if ($limit === 0) {
         return [];
     }
         
     if ($limit <= 2) {
-        return array_slice($fibonacciNumbers, 0, $limit);
+        return array_slice($fibonacci, 0, $limit);
     }
     
-    if($limit > count($fibonacciNumbers)) {
-        $nextElement = [$fibonacciNumbers[count($fibonacciNumbers) - 1] + $fibonacciNumbers[count($fibonacciNumbers) - 2]];
-        $fibonacciNumbers = calculateFibonacciByRecursion($limit, array_merge($fibonacciNumbers, $nextElement));
+    if($limit > count($fibonacci)) {
+        $nextElement = [$fibonacci[count($fibonacci) - 1] + $fibonacci[count($fibonacci) - 2]];
+        $fibonacci = calculateFibonacciRecursion($limit, array_merge($fibonacci, $nextElement));
     }
-    
-    return $fibonacciNumbers;
+    return $fibonacci;
 }
 
 
