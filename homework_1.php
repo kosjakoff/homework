@@ -1,5 +1,3 @@
-# homework
-
 <?php
 
 /* transform decimal number to binary */
@@ -18,7 +16,7 @@ function transformDecimalToBinary(int $decimalNumber): int {
 
 /* transform binary number to decimal */
 
-function transformBinaryToDecimal(int $binaryNumber): int { 
+function transformBinaryToDecimal($binaryNumber): int { 
     
     $simbols = str_split($binaryNumber);
     
@@ -283,16 +281,16 @@ function printFibonacci(int $limit) {
         echo 'Zero limit, Fibonacci array is empty!';
     }
     
-    function calculateFibonacciNumberByRecursion(int $limit) {
-        if ($limit <= 2) {
-            return  $limit - 1;
-        }
-        return calculateFibonacciNumberByRecursion($limit - 1) + calculateFibonacciNumberByRecursion($limit - 2);
-    }
-    
     for ($i = 1; $i <= $limit; $i++) {
         echo calculateFibonacciNumberByRecursion($i) . ', ';	
     }
+}
+    
+function calculateFibonacciNumberByRecursion(int $limit) {
+    if ($limit <= 2) {
+        return  $limit - 1;
+    }
+    return calculateFibonacciNumberByRecursion($limit - 1) + calculateFibonacciNumberByRecursion($limit - 2);
 }
 
 //  another variant 
