@@ -1,7 +1,10 @@
 # homework
 
 <?php
-function transformDecimalToBinary(int $decimalNumber): string {              
+
+/* transform decimal number to binary */
+
+function transformDecimalToBinary(int $decimalNumber): int {              
     
     $absValue = abs($decimalNumber);
     
@@ -9,30 +12,32 @@ function transformDecimalToBinary(int $decimalNumber): string {
         $result = ($absValue % 2) . $result;
         $absValue = intdiv($absValue, 2);
     } while ($absValue != 0);
-    
+
     return $result;
 }
+
+/* transform binary number to decimal */
 
 function transformBinaryToDecimal(int $binaryNumber): int { 
     
-    $arraySimbol = str_split($decimalNumber);
+    $simbols = str_split($binaryNumber);
     
-    foreach($arraySimbol as $value){
-        if ((int)$value != 0 && (int)$value != 1) {
+    foreach($simbols as $simbol){
+        if ((int)$simbol != 0 && (int)$simbol != 1) {
             throw new Exception('Entered number is not Binary');
         }
     }
-    	
-    $binaryArray = str_split(abs($binaryNumber));      	
-    $degree = count($binaryArray);
+	
+    $degree = count($simbols);
     
-    foreach ($binaryArray as $value){  
-        $result = $result + $value * (2 ** --$degree);
+    foreach ($simbols as $simbol){  
+        $result = $result + $simbol * (2 ** --$degree);
     }
     
     return $result;
 }
 
+/* Fist N fibonacci numbers */
 
 function calculateFibonacci (int $limit): array {				
     $result = [];
@@ -49,11 +54,13 @@ function calculateFibonacci (int $limit): array {
     return $result;
 }
 
+/* power of number */
 
-function getPower (int $enteredNumber, int $power): int {  			
+function calculatePower(int $enteredNumber, int $power): float {  			
     $result = 1;
+    $absolutePover = abs($power);
     
-    for ($i = 1; $i <= abs($power); $i++) {
+    for ($i = 1; $i <= $absolutePover; $i++) {
         $result = $result * $enteredNumber;
     }
     
@@ -65,31 +72,29 @@ function getPower (int $enteredNumber, int $power): int {
 }
 
 
-//Написать функцию которая вычисляет входит ли IP-адрес в диапазон указанных IP-адресов. Вычислить для версии ipv4
+/* is IP in range (for ipv4) */
 
 function isIpInRange(string $inputIp, string $startIp, string $endIp): bool {
     
-    $inputOktets = explode(".", $inputIp);
-    $startOktets = explode(".", $startIp);
-    $endOktets   = explode(".", $endIp);
-
-    $input = $inputOktets[0]*256*256*256+$inputOktets[1]*256*256+$inputOktets[2]*256+$inputOktets[3];    
-    $start = $startOktets[0]*256*256*256+$startOktets[1]*256*256+$startOktets[2]*256+$startOktets[3]; 
-    $end = $endOktets[0]*256*256*256+$endOktets[1]*256*256+$endOktets[2]*256+$endOktets[3];
+    function transformIpToDecimal(string $ip) {
+        $ipOctets = explode(".", $ip);
         
-    for ($i = $start; $i <= $end; $i++) {
-        if ($input == $i) {
-            return true;
+        foreach ($ipOctets as $octet) {
+            while (strlen($octet) < 3) {
+                $octet = 0 . $octet;    
+            }
+            
+            $result = $octet . $result;
         }
+        return $result;
     }
     
-    return false;
+    return (transformIpToDecimal($inputIp) >= transformIpToDecimal($startIp)  &&  transformIpToDecimal($inputIp) <= transformIpToDecimal($endIp));
 }
 
-/* Для одномерного массива 
-Подсчитать процентное соотношение положительных/отрицательных/нулевых/простых чисел */
+/* calculate precentage of positive/negative/zero/simple elements in array */
  
-function calculatePrecentageByUser(array $inputElements, callable $isCondition): int {
+function calculatePrecentage(array $inputElements, callable $isCondition): int {
     
     if (count($inputElements > 0)) {
         $totalNumbers = 0;
@@ -106,7 +111,7 @@ function calculatePrecentageByUser(array $inputElements, callable $isCondition):
     throw new Exception('Empty array()');
 }
 
-/* callable функции проверки соответствия элементов условию */
+/* callable  check condition function */
 
 function isPositive(int $element): int {
     return ($element > 0);
@@ -133,13 +138,13 @@ function isSimple(int $element): int {
 } 
 
 
-/* Отсортировать элементы по возрастанию/убыванию (мой аналог usort() методом пузырька) */
+/* sort array up/down */
 
-function sortArrayByUser (array $inputElements, callable $compare): array {
-   
-   for ($i = 0; $i < count($inputElements) - 1; $i++) {
-        for ($j = 0; $j < count($inputElements) - $i - 1; $j++) {
-            
+function sortArray (array &$inputElements, callable $compare): array {
+    $count = count($inputElements);
+    
+    for ($i = 0; $i < $count - 1; $i++) {
+        for ($j = 0; $j < $count - $i - 1; $j++) {
             if ($compare($inputElements[$j], $inputElements[$j + 1]) > 0) {
                 $temp = $inputElements[$j];
                 $inputElements[$j] = $inputElements[$j + 1];
@@ -147,11 +152,10 @@ function sortArrayByUser (array $inputElements, callable $compare): array {
             }
         }
     }
-    
-    return $inputElements;
 }
 
-/*callable функции сравнения по возрастанию и убыванию */
+/*callable comparison function */
+
 function compareElementsUp(int $leftElement, int $rightElement): int {
     
     if ($leftElement == $rightElement) {
@@ -169,7 +173,7 @@ function compareElementsDown(int $leftElement, int $rightElement): int {
 }
 
 
-/* Для двумерных массивов */
+/* transpose Matrix */
 
 function transposeMatrix(array $matrix): array {				
     
@@ -182,13 +186,15 @@ function transposeMatrix(array $matrix): array {
     return $result;
 }
 
+/* Sum of 2 matrices */
+
 function sumMatrices (array $matrixLeft, array $matrixRight): array {				
     
     if (count($matrixLeft) != count($matrixRight)) {	
         throw new Exception('Matrix sizes are not equal');
     }
    
-   for ($i = 0; $i < count($matrixLeft); $i++) {
+    for ($i = 0; $i < count($matrixLeft); $i++) {
         if (count($matrixLeft[$i]) != count($matrixRight[$i])) {	
             throw new Exception('Matrix sizes are not equal');
         }
@@ -201,7 +207,8 @@ function sumMatrices (array $matrixLeft, array $matrixRight): array {
     return $result;
 } 
 
-// Удалить те строки, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент. 
+/* Delete rows which elements sum is positive (or there is at least 1 ZERO element)*/
+
 function deleteRows(array $matrix): array {
     for ($i = 0; $i < count($matrix); $i++) {
         
@@ -226,7 +233,8 @@ function deleteRows(array $matrix): array {
     return $matrix;
 }
 
-// Удалить те столбцы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент
+/* delete columns which elements sum is positive (or there is at least 1 ZERO element) */
+
 function deleteColumns(array $matrix): array {			
     
     for ($i = 0; $i < count($matrix); $i++) {
@@ -251,8 +259,8 @@ function deleteColumns(array $matrix): array {
     return $matrix;
 }
 
-/* РЕКУРСИИ */
-// преобразование в бинарное число с помощью рекурсии 
+/* RECURSION */
+/* transform decimal to binary */ 
 
 function transformDecimalToBinaryByRecursion(int $decimalNumber): int {
     
@@ -268,10 +276,11 @@ function transformDecimalToBinaryByRecursion(int $decimalNumber): int {
 }
 
 
-//Написать функцию которая выводит первые N чисел фибоначчи с помощью рекурсии 
+/* first N Fibonacci numbers */
+
 function printFibonacci(int $limit) {  
     if($limit === 0) {
-        echo 'No numbers';
+        echo 'Zero limit, Fibonacci array is empty!';
     }
     
     function calculateFibonacciNumberByRecursion(int $limit) {
@@ -286,9 +295,29 @@ function printFibonacci(int $limit) {
     }
 }
 
+//  another variant 
 
-/* Отсортировать элементы по возрастанию by RECURSION */
-// функции сравнения определены выше
+function calculateFibonacciByRecursion(int $limit, array $fibonacciNumbers = [0, 1]): array {
+    
+    if ($limit === 0) {
+        return [];
+    }
+        
+    if ($limit <= 2) {
+        return array_slice($fibonacciNumbers, 0, $limit);
+    }
+    
+    if($limit > count($fibonacciNumbers)) {
+        $nextElement = [$fibonacciNumbers[count($fibonacciNumbers) - 1] + $fibonacciNumbers[count($fibonacciNumbers) - 2]];
+        $fibonacciNumbers = calculateFibonacciByRecursion($limit, array_merge($fibonacciNumbers, $nextElement));
+    }
+    
+    return $fibonacciNumbers;
+}
+
+
+/* sort array by RECURSION */
+// comparison functions are defined above
 
 function sortArrayUpByRecursion(array &$Numbers, int $low, int $high, callable $compare) {	
     $indexLeft = $low;                
@@ -321,11 +350,12 @@ function sortArrayUpByRecursion(array &$Numbers, int $low, int $high, callable $
 }
 
 
-//суммирование матриц при помощи рекурсии
+/* to sum Matrices by recursion */
+
 function sumMatricesByRecursion (array $matrixLeft, array $matrixRight): array {
     
     if (count($matrixLeft) != count($matrixRight)) {
-        throw new Exception('размеры матриц не совпадают. ');
+        throw new Exception('Matrix sises are not equal. ');
     }
     
     for ($i = 0; $i < count($matrixLeft); $i++) {
@@ -339,23 +369,23 @@ function sumMatricesByRecursion (array $matrixLeft, array $matrixRight): array {
 } 
 
 
-// Написать рекурсивную функцию которая будет обходить и выводить все значения любого массива и любого уровня вложенности
-function getAllArrayElements(array $inputElements) {
+/ * to traverse and display all values of any array * /
+
+function printAllArrayElements(array $inputElements) {
    
    for ($i = 0; $i < count($inputElements); $i++) {
         echo ' [' . $i . '] => ';
         
         if (is_array($inputElements[$i])) {
-            echo ' array( <BR>';
-            getAllArrayElements($inputElements[$i]);
+            echo ' array(';
+            printAllArrayElements($inputElements[$i]);
         }
         else {
-            echo  $inputElements[$i] . '<br> ';
+            echo  $inputElements[$i] . ', ';
         }
     }
     
-    echo ') <br>';
-    return true;
+    echo '), ';
 }
 
 
