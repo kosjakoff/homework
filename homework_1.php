@@ -16,24 +16,16 @@ function transformDecimalToBinary(int $decimalNumber): int {
 
 /* transform binary number to decimal */
 
-function transformBinaryToDecimal($binaryNumber): int { 
+function transformToDecimal($binaryNumber): int { 
     
-    $simbols = str_split($binaryNumber);
-    
-    foreach($simbols as $simbol){
-        if ((int)$simbol != 0 && (int)$simbol != 1) {
-            throw new Exception('Entered number is not Binary');
-        }
-    }
-	
-    $degree = count($simbols);
-    
-    foreach ($simbols as $simbol){  
-        $result = $result + $simbol * (2 ** --$degree);
+    for ($degree = 0; $binaryNumber > 0; $degree++){  
+        $result = $result + $binaryNumber%10 * (2 ** $degree);
+        $binaryNumber = (int)($binaryNumber/10);
     }
     
     return $result;
 }
+
 
 /* Fist N fibonacci numbers */
 
