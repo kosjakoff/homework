@@ -1,16 +1,14 @@
 <?php
-namespace Figure;
+namespace Figures;
 
 class Rectangle extends Figure {
     
     public  $width;
     public  $hight;
     
-    function __construct(array $parameters) {
-        if(!$parameters['width'] || !$parameters['hight']) {
-            throw new Exception('invalid parameters!');
-        }
-        parent::__construct($parameters);
+    public function __construct($width, $hight) {
+        $this->width = $width;
+        $this->hight = $hight;
     }
     
     public function getSquare() {

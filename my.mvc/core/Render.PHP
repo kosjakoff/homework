@@ -1,5 +1,5 @@
 <?php
-
+// больше не нужен
 namespace core;
 
 use \core\Route;
@@ -22,7 +22,7 @@ class Render {
             $controller = new $controller();
         }
         else {
-            $controller = new \controllers\NotFound();
+            $controller = new \controllers\Error();
             $action = "error_404";
         }
         

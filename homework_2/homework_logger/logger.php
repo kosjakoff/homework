@@ -33,7 +33,7 @@ class Logger {
         return self::$instances[$fileName];
     }
     
-    public function writeLog(array $format, string $message, string $level = 'TRACE'): void {
+    public function writeLog(string $message, array $format = ['date', 'level', 'message'], string $level = 'TRACE'): void {
         if (!$this->isLevel($level)) {
             throw new Exception("Level $level is not exist!");
         }
@@ -67,17 +67,5 @@ class Logger {
 $logFile = 'logs.log';
 $format = ['date', 'message', 'level'];
 
-Logger::getInstance($logFile)->writeLog($format, "Start!");
-Logger::getInstance($logFile)->writeLog($format, "Message_1", 'INFO');
-Logger::getInstance($logFile)->writeLog($format, "Message_2", 'DEBUG');
-Logger::getInstance($logFile)->writeLog($format, "Message_3", 'ERROR');
-Logger::getInstance($logFile)->writeLog($format, "Finish!", 'FATAL');
+Logger::getInstance($logFile)->writeLog("Message_2", $format, 'DEBUG');
 
-$newLogFile = 'newLogs.log';
-$newFormat = ['date', 'level', 'message'];
-
-Logger::getInstance($newLogFile)->writeLog($format, "Start!");
-Logger::getInstance($newLogFile)->writeLog($format, "Message_1", 'INFO');
-Logger::getInstance($newLogFile)->writeLog($format, "Message_2", 'DEBUG');
-Logger::getInstance($newLogFile)->writeLog($format, "Message_3", 'ERROR');
-Logger::getInstance($newLogFile)->writeLog($format, "Finish!", 'FATAL');

@@ -1,17 +1,15 @@
 <?php
-namespace Figure;
+namespace Figures;
 
 spl_autoload_register();
 
 
 abstract class Figure {
     
-    function __construct(array $parameters){
-        foreach ($parameters as $key=>$value) {
-            $this->{$key} = $value;
-        }
+    public function __construct() {
+        
     }
-    
+        
     abstract function getSquare();  //корректно ли так именовать функцию?
         
     abstract function getPerimeter();

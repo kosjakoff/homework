@@ -1,7 +1,8 @@
 <?php
 
 use core\ClassLoader;
-use core\Render;
+use core\Database;
+use \core\Route;
 
 require_once("core/ClassLoader.php");
 
@@ -13,11 +14,16 @@ catch (\Exception $error) {
 }
 
 try{
-    $page = (new Render)->init();
+    $page = Route::getInstance()->render();
 }
 catch (\Exception $error) {
     echo $error->getMessage();
 }
 
-
+try{
+    $dbConnection = Database::getInstance();
+}
+catch (\Exception $error) {
+    echo $error->getMessage();
+}
 

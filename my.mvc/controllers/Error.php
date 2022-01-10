@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-class NotFound {
+class Error {
     
     private $page;
     

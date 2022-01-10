@@ -1,5 +1,5 @@
 <?php
-namespace Figure;
+namespace Figures;
 
 class Triangle extends Figure {
     
@@ -7,12 +7,10 @@ class Triangle extends Figure {
     public  $sideB;
     public  $sideC;
     
-    function __construct(array $parameters) {
-        if(!$parameters['sideA'] || !$parameters['sideB'] || !$parameters['sideC']) {
-            throw new Exception('invalid parameters!');
-        }
-        
-        parent::__construct($parameters);
+    public function __construct($sideA, $sideB, $sideC) {
+        $this->sideA = $sideA;
+        $this->sideB = $sideB;
+        $this->sideC = $sideC;
     }
     
     function getSquare () {

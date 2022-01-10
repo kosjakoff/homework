@@ -19,6 +19,12 @@
                 echo $contents['title']; 
             }
             ?> </span>
+            <div>
+                <a href="\"> HOME </a>
+                <a href="\users\"> USERS </a> 
+                <a href="\products\"> PRODUCTS </a> 
+                <a href="\page\"> PAGES </a>
+            </div>
         </header> 
         
         

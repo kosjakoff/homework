@@ -1,29 +1,15 @@
 <?php 
 spl_autoload_register();
 
-$rectangleParameters = [
-    "width" => 3,
-    "hight" => 4,
-];
-$circleParameters = [
-    "radius" => 5,
-];
-$triangleParameters = [
-    "sideA" => 3,
-    "sideB" => 4,
-    "sideC" => 4,
-];
+$rectangle = new Figures\Rectangle(3, 4);
+$circle = new Figures\Circle(5);
+$triangle = new Figures\Triangle(3, 4, 4);
 
+function PrintParam (Figures\Figure $figure) {
+    echo $figure->getSquare(). "<br/>";
+    echo $figure->getPerimeter() . "<br/>";
+}
 
-$rectangle = new Figure\Rectangle($rectangleParameters);
-$circle = new Figure\Circle($circleParameters);
-$triangle = new Figure\Triangle($triangleParameters);
-
-echo $rectangle->getSquare() . "<br/>";
-echo $rectangle->getPerimeter() . "<br/>";
-echo $circle->getSquare() . "<br/>";
-echo $circle->getPerimeter() . "<br/>";
-echo $triangle->getSquare() . "<br/>";
-echo $triangle->getPerimeter() . "<br/>";
-?>
-
+PrintParam($rectangle);
+PrintParam($circle);
+PrintParam($triangle);

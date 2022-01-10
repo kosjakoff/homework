@@ -1,15 +1,12 @@
 <?php
-namespace Figure;
+namespace Figures;
 
 class Circle extends Figure {
     
     public  $radius;
     
-    function __construct(array $parameters) {
-        if(!$parameters['radius']) {
-            throw new Exception('invalid parameters!');
-        }
-        parent::__construct($parameters);
+    public function __construct($radius) {
+        $this->radius = $radius;
     }
     
     function getSquare () {
