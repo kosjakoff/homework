@@ -2,9 +2,13 @@
 namespace controllers;
 
 class PageController {
-
-    public function __construct() {
     
+    public $tamplate;
+    public $title;
+    
+    public function __construct () {
+        $this->tamplate = 'Default';
+        $this->title = 'Page';
     }
     
     public function index():array {

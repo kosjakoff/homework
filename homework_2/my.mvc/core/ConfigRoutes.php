@@ -40,12 +40,12 @@ class ConfigRoutes {
                     "uri" => "products",
                     "controller" => "\\controllers\\ProductController",
                     "params" => "",
-                    "action" => "getProduct",
+                    "action" => "getProducts",
                 ], [
                     "uri" => "products/([0-9]+)",
                     "controller" => "\\controllers\\ProductController",
                     "params" => "$1",
-                    "action" => "getProducts",
+                    "action" => "getProduct",
                 ], 
                 
             ],

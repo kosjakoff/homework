@@ -3,8 +3,12 @@ namespace controllers;
 
 class ProductController {
 
-    public function __construct() {
+    public $tamplate;
+    public $title;
     
+    public function __construct () {
+        $this->tamplate = 'Default';
+        $this->title = 'Product page';
     }
     
     public function getProduct($productId):array {

@@ -10,9 +10,9 @@ abstract class Figure {
         
     }
         
-    abstract function getSquare();  //корректно ли так именовать функцию?
+    abstract function calcSquare();
         
-    abstract function getPerimeter();
+    abstract function calcPerimeter();
     
 }
 

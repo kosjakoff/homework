@@ -3,8 +3,12 @@ namespace controllers;
 
 class UserController {
 
-    public function __construct() {
-    
+    public $tamplate;
+    public $title;
+
+    public function __construct () {
+        $this->tamplate = 'Default';
+        $this->title = 'User page';
     }
     
     public function getUser($userId):array {

@@ -11,17 +11,17 @@
 
 */
 
+define("SEPARATOR", ";");
+define("FORMAT", ['date', 'level', 'message']);
+
 class Logger {
     
     private static $instances = [];
     private $levels = [];
     protected $fileName;
-    protected $separator;
-    
     
     protected function __construct($fileName) {
         $this->fileName = $fileName;
-        $this->separator = ';';
         $this->levels = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL'];
     }
     
@@ -33,7 +33,7 @@ class Logger {
         return self::$instances[$fileName];
     }
     
-    public function writeLog(string $message, array $format = ['date', 'level', 'message'], string $level = 'TRACE'): void {
+    public function write(string $message, string $level): void {
         if (!$this->isLevel($level)) {
             throw new Exception("Level $level is not exist!");
         }
@@ -45,8 +45,8 @@ class Logger {
         $log = '';
         $date = date("[Y-m-d H:i:s]");
         
-        foreach ($format as $value) {
-            $log.= $$value . $this->separator;
+        foreach (FORMAT as $value) {
+            $log.= $$value . SEPARATOR;
         }
         
         file_put_contents($this->fileName, "$log\n", FILE_APPEND);
@@ -65,7 +65,5 @@ class Logger {
 }
 
 $logFile = 'logs.log';
-$format = ['date', 'message', 'level'];
 
-Logger::getInstance($logFile)->writeLog("Message_2", $format, 'DEBUG');
-
+Logger::getInstance($logFile)->write("Message_2", 'DEBUG');

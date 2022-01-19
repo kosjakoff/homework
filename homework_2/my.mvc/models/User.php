@@ -10,7 +10,7 @@ class User extends Database {
     }
     
     public static function getUser($userId) {
-        return parent::getOne("SELECT * FROM users WHERE page_id = '$userId'");
+        return parent::getOne("SELECT * FROM users WHERE id = '$userId'");
     }
     
     public static function getUsers() {

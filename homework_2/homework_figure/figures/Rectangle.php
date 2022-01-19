@@ -3,19 +3,19 @@ namespace Figures;
 
 class Rectangle extends Figure {
     
-    public  $width;
-    public  $hight;
+    private  $width;
+    private  $hight;
     
     public function __construct($width, $hight) {
         $this->width = $width;
         $this->hight = $hight;
     }
     
-    public function getSquare() {
+    public function calcSquare() {
         return $this->width * $this->hight;
     }
     
-    public function getPerimeter() {
+    public function calcPerimeter() {
         return $this->width * 2 + $this->hight * 2;
     }
 }

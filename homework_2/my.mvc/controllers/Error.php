@@ -4,10 +4,12 @@ namespace controllers;
 
 class Error {
     
-    private $page;
+    public $tamplate;
+    public $title;
     
-    public function __construct ($page = '') {
-        $this->page = $page;
+    public function __construct () {
+        //$this->tamplate = 'Default';
+        $this->title = 'Error';
     }
     
     public function error_404() {

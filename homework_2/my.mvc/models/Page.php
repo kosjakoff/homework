@@ -10,7 +10,7 @@ class Page extends Database {
     }
     
     public static function getContent($pageId) {
-        return parent::getOne("SELECT * FROM pages WHERE page_id = '$pageId'");
+        return parent::getOne("SELECT * FROM pages WHERE id = '$pageId'");
     }
     
     

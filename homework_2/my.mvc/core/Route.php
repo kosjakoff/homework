@@ -48,8 +48,7 @@ class Route {
         
         if(class_exists($controller)) {
             $controller = new $controller();
-        }
-        else {
+        } else {
             $controller = new \controllers\Error();
             $action = "error_404";
         }
@@ -57,27 +56,22 @@ class Route {
         if(method_exists($controller, $action)){
             $params = explode("/", $params);
             $contents = call_user_func_array([$controller, $action], $params);
-        }
-        else {
+            
+            if (!$contents) {                           // is content
+                $controller = new \controllers\Error();
+                $action = "error_404";
+                $controller->$action;
+            }
+            
+        } else {
             throw new \Exception("Action with name: " . $action . " not found"); 
         }
         
-        if(file_exists("views/header.php")){
-            require_once("views/header.php");
-        }
-        else {
-            throw new \Exception("Header does not found"); 
-        }
-        
-        if ($action) {
+        if (isset($controller->tamplate) && file_exists("views/" . $controller->tamplate . ".php")){
+            require_once("views/" . $controller->tamplate . ".php");
+        } elseif (isset($action)) {
             require("views/" . $action . ".php");
         }
         
-        if(file_exists("views/footer.php")){
-            require_once("views/footer.php");
-        }
-        else {
-            throw new \Exception("Header does not found"); 
-        }
     }
 }

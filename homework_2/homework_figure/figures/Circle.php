@@ -3,17 +3,17 @@ namespace Figures;
 
 class Circle extends Figure {
     
-    public  $radius;
+    private  $radius;
     
     public function __construct($radius) {
         $this->radius = $radius;
     }
     
-    function getSquare () {
-        return ($this->radius * $this->radius * 3.14);
+    function calcSquare () {
+        return ($this->radius * $this->radius * M_PI);
     }
     
-    public function getPerimeter() {
-        return $this->radius * 2 * 3.14;
+    public function calcPerimeter() {
+        return $this->radius * 2 * M_PI;
     }
 }

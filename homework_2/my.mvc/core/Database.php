@@ -26,13 +26,12 @@ class Database{
 	    return self::$instance;
     }
     
-    public function getAll($sql){
+    public function getAll($sql): array {
         $result = mysqli_query(self::$dbConnect, $sql); 
         
-        if(!$result){
-            return array();
-        }
-        else{
+        if(mysqli_num_rows($result) === 0){
+            return [];
+        } else {
             while ($row = mysqli_fetch_assoc($result)) {
                 $resultRows[] = $row;
             }
@@ -41,13 +40,12 @@ class Database{
         return $resultRows;
     }
     
-    public function getOne($sql){
-        $result = mysqli_query(self::$dbConnect, $sql); 
+    public function getOne($sql): array {
+        $result = mysqli_query(self::$dbConnect, $sql);
         
-        if(!$result){
-            return array();
-        }
-        else{
+        if(mysqli_num_rows($result) === 0){
+            return [];
+        } else {
             return mysqli_fetch_assoc($result);
         }
     }  

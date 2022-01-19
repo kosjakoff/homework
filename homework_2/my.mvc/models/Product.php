@@ -10,10 +10,10 @@ class Product extends Database {
     }
     
     public static function getProduct($productId) {
-        return parent::getOne("SELECT * FROM product WHERE page_id = '$productId'");
+        return parent::getOne("SELECT * FROM products WHERE id = '$productId'");
     }
     
     public static function getProducts() {
-        return parent::getAll("SELECT * FROM product");
+        return parent::getAll("SELECT * FROM products");
     }
 }
