@@ -1,0 +1,50 @@
+Проектирование базы данных.
+Предметная область – городской транспорт.
+
+Сущности:
+- Вид транспорта – Transport_type;
+- Модель - Model;
+- Транспортная единица – Transport_item;
+- Работник – Employer;
+- Должность – Role;
+- Экипаж – Team;
+- Рейс -  Race.
+
+Характеристики сущности
+Transport_item: 
+- reg_id (может повторяться для разных типов транспорта),
+- Type_id,
+- Model_id,
+- Description.
+
+Model:
+- ID,
+- Type_id,
+- Description,
+- Title.
+
+Transport_type:
+- ID,
+- Title (bus, tram, …).
+
+Employer:
+- ID,
+- Role_id,
+- Name;
+- Lastname.
+
+Role:
+- ID,
+- Type_id (для кондуктора = null ),
+- Title (Водитель, кондуктор).
+
+Team:
+- ID,
+- Driver_id,
+- Conductor_id.
+
+Race:
+- ID,
+- Transport _reg_id,
+- Type_iD,
+- Date.
