@@ -11,24 +11,26 @@
 
 */
 
-define("SEPARATOR", ";");
-define("FORMAT", ['date', 'level', 'message']);
-define("TIME_FORMAT", "[Y-m-d H:i:s]");
 
 class Logger {
     
     private static $instances = [];
     private $levels = [];
     protected $fileName;
+    protected $separator;
+    protected $format =[];
     
-    protected function __construct($fileName) {
+    protected function __construct($fileName, $format, $dateFormat) {
         $this->fileName = $fileName;
         $this->levels = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL'];
+        $this->separator = ";";
+        $this->format = $format;
+        $this->dateFormat = $dateFormat;
     }
     
-    public static function getInstance($fileName) {
+    public static function getInstance($fileName, $format, $dateFormat) {
         if(self::$instances[$fileName] === null){
-            self::$instances[$fileName] = new self($fileName);
+            self::$instances[$fileName] = new self($fileName, $format, $dateFormat);
         }
 
         return self::$instances[$fileName];
@@ -44,10 +46,10 @@ class Logger {
         }
         
         $log = '';
-        $date = date(TIME_FORMAT);
+        $date = date($this->dateFormat);
         
-        foreach (FORMAT as $value) {
-            $log.= $$value . SEPARATOR;
+        foreach ($this->format as $value) {
+            $log.= $$value . $this->separator;
         }
         
         file_put_contents($this->fileName, "$log\n", FILE_APPEND);
@@ -65,6 +67,8 @@ class Logger {
     
 }
 
-$logFile = 'logs.log';
+$logFile = 'newLogs.log';
+$format = ['date', 'level', 'message'];
+$dateFormat = "[Y-m-d H:i:s]";
 
-Logger::getInstance($logFile)->write("Message_2", 'DEBUG');
+Logger::getInstance($logFile, $format, $dateFormat)->write("Message_2", 'DEBUG');
