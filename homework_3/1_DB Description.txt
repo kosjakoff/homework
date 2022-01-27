@@ -1,0 +1,78 @@
+Проектирование базы данных.
+Предметная область – городской транспорт.
+
+Сущности:
+- Вид транспорта – Transport_type;
+- Модель - Model;
+- Астобус - Bus;
+- Трамвай - Tram;
+- Троллейбус - Trolleybus;
+- Транспортная единица – Transport_item;
+- Водитель – Driver;
+- Рейс -  Tour.
+
+Характеристики сущности
+Transport_type:
+- ID,
+- Title.
+
+Model:
+- ID,
+- Type_id,
+- Description,
+- Title.
+
+Bus:
+- Reg_id,
+- Model_id,
+- Type_id,
+- Description.
+
+Tram:
+- Reg_id,
+- Model_id,
+- Type_id
+- Description.
+
+Trolleybus:
+- Reg_id,
+- Model_id,
+- Type_id
+- Description.
+
+Transport_item: 
+- Reg_id (может повторяться для разных типов транспорта),
+- Type_id,
+
+Driver:
+- ID,
+- Name;
+- Lastname.
+
+Driver_Transport_type:
+- Driver_id,
+- Tupe_id.
+
+Tour:
+- ID,
+- Transport_reg_id,
+- Type_iD,
+- Driver_id
+- Date.
+
+Диаграмма базы данных приведена в файле 2_Sity Transport DB Diagram.png
+Скрипт создания БД: 3_Create_DB_City_Transport.sql
+
+
+Денормализация.
+Таблицы для каждого из типов транспорта (`Bus`, `Tram`, `Trolleybus`) следует объединить с таблицей `Transport_item`. 
+Атрибуты `reg_id` и `type_id` являются первичным ключом.
+Transport_item:
+- Reg_id (может повторяться для разных типов транспорта),
+- Type_id,
+- Model_id,
+- Description.
+
+Диаграмма денормализованной базы данных приведена в файле 4_Sity Transport Denorm Diagram.png
+Скрипт создания БД: 5_Denorm_DB_City_Transport.sql
+
