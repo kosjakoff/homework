@@ -6,8 +6,8 @@ $circle = new Figures\Circle(5);
 $triangle = new Figures\Triangle(3, 4, 4);
 
 function PrintParam (Figures\Figure $figure) {
-    echo $figure->calcSquare(). "<br/>";
-    echo $figure->calcPerimeter() . "<br/>";
+    echo $figure->square(). "<br/>";
+    echo $figure->perimeter() . "<br/>";
 }
 
 PrintParam($rectangle);

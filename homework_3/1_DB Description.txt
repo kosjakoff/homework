@@ -2,77 +2,51 @@
 Предметная область – городской транспорт.
 
 Сущности:
-- Вид транспорта – Transport_type;
-- Модель - Model;
-- Астобус - Bus;
-- Трамвай - Tram;
-- Троллейбус - Trolleybus;
-- Транспортная единица – Transport_item;
-- Водитель – Driver;
-- Рейс -  Tour.
+- Тип транспорта – type;
+- Модель - model;
+- Транспортное средство – vehicle;
+- Водитель – driver;
+- Маршрут - route,
+- Рейс -  tour;
+- связь водитель_тип транспорта - driver_type.
 
-Характеристики сущности
-Transport_type:
-- ID,
-- Title.
+Характеристики сущностей
+type:
+- id,
+- title.
 
-Model:
-- ID,
-- Type_id,
-- Description,
-- Title.
+model:
+- id,
+- type_id,
+- description,
+- title.
 
-Bus:
-- Reg_id,
-- Model_id,
-- Type_id,
-- Description.
+vehicle: 
+- registration_id (может повторяться для разных типов транспорта),
+- model_id,
+- description.
 
-Tram:
-- Reg_id,
-- Model_id,
-- Type_id
-- Description.
+driver:
+- id,
+- name;
+- lastname.
 
-Trolleybus:
-- Reg_id,
-- Model_id,
-- Type_id
-- Description.
+driver_type:
+- driver_id,
+- type_id.
 
-Transport_item: 
-- Reg_id (может повторяться для разных типов транспорта),
-- Type_id,
+route:
+- route_id (может повторяться для разных типов транспорта),
+- type_id,
+- title.
 
-Driver:
-- ID,
-- Name;
-- Lastname.
+tour:
+- id,
+- registration_id,
+- model_id,
+- driver_id
+- date.
 
-Driver_Transport_type:
-- Driver_id,
-- Tupe_id.
-
-Tour:
-- ID,
-- Transport_reg_id,
-- Type_iD,
-- Driver_id
-- Date.
-
-Диаграмма базы данных приведена в файле 2_Sity Transport DB Diagram.png
+Диаграмма базы данных приведена в файле 2_Diagram_Sity_Transport.png
 Скрипт создания БД: 3_Create_DB_City_Transport.sql
-
-
-Денормализация.
-Таблицы для каждого из типов транспорта (`Bus`, `Tram`, `Trolleybus`) следует объединить с таблицей `Transport_item`. 
-Атрибуты `reg_id` и `type_id` являются первичным ключом.
-Transport_item:
-- Reg_id (может повторяться для разных типов транспорта),
-- Type_id,
-- Model_id,
-- Description.
-
-Диаграмма денормализованной базы данных приведена в файле 4_Sity Transport Denorm Diagram.png
-Скрипт создания БД: 5_Denorm_DB_City_Transport.sql
 

@@ -9,11 +9,11 @@ class Circle extends Figure {
         $this->radius = $radius;
     }
     
-    function calcSquare () {
+    function square () {
         return ($this->radius * $this->radius * M_PI);
     }
     
-    public function calcPerimeter() {
+    public function perimeter() {
         return $this->radius * 2 * M_PI;
     }
 }
