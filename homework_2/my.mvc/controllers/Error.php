@@ -1,18 +1,20 @@
 <?php
-
 namespace controllers;
 
 class Error {
     
-    public $tamplate;
-    public $title;
-    
     public function __construct () {
-        //$this->tamplate = 'Default';
-        $this->title = 'Error';
+    
     }
     
     public function error_404() {
-        return "Page not Found!";
+        
+        $data['title'] = 'Error';
+        $data['message'] = "Page not Found!";
+        
+        require_once("views/header.php");
+        require_once("views/error_404.php");
+        require_once("views/footer.php");
+        
     }
 }

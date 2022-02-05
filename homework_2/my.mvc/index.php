@@ -22,7 +22,7 @@ catch (\Exception $error) {
 }
 
 try{
-    $page = Route::getInstance()->render();
+    $page = Route::getInstance()->loadController();
 }
 catch (\Exception $error) {
     echo $error->getMessage();

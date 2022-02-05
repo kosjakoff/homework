@@ -3,22 +3,40 @@ namespace controllers;
 
 class UserController {
 
-    public $tamplate;
-    public $title;
-
     public function __construct () {
-        $this->tamplate = 'Default';
-        $this->title = 'User page';
+
     }
     
-    public function getUser($userId):array {
-        $result = \models\User::getUser($userId);
-        return $result;
+    public function showUser($userId): bool {
+        
+        $data['title'] = 'User' . $userId;
+        
+        if ($data['query'] = \models\User::getUser($userId)) {
+            
+            require_once("views/header.php");
+            require_once("views/showUser.php");
+            require_once("views/footer.php");
+        
+            return true;
+        }
+        
+        return false;
     }
     
-    public function getUsers():array {
-        $result = \models\User::getUsers();
-        return($result);
+    public function showUsers(): bool {
+
+        $data['title'] = 'Users';
+        
+        if ($data['query'] = \models\User::getUsers()) {
+            
+            require_once("views/header.php");
+            require_once("views/showUsers.php");
+            require_once("views/footer.php");
+        
+            return true;
+        }
+        
+        return false;
     }
     
 }

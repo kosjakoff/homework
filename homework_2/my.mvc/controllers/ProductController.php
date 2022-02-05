@@ -3,22 +3,40 @@ namespace controllers;
 
 class ProductController {
 
-    public $tamplate;
-    public $title;
-    
     public function __construct () {
-        $this->tamplate = 'Default';
-        $this->title = 'Product page';
+
     }
     
-    public function getProduct($productId):array {
-        $result = \models\Product::getProduct($productId);
-        return $result;
+    public function showProduct($productId): bool {
+        
+        $data['title'] = 'Product' . $productId;
+        
+        if ($data['query'] = \models\Product::getProduct($productId)) {
+            
+            require_once("views/header.php");
+            require_once("views/showProduct.php");
+            require_once("views/footer.php");
+        
+            return true;
+        }
+        
+        return false;
     }
     
-    public function getProducts():array {
-        $result = \models\Product::getProducts();
-        return($result);
+    public function showProducts(): bool {
+        
+        $data['title'] = 'Product' . $productId;
+        
+        if ($data['query'] = \models\Product::getProducts()) {
+            
+            require_once("views/header.php");
+            require_once("views/showProducts.php");
+            require_once("views/footer.php");
+        
+            return true;
+        }
+        
+        return false;
     }
     
 }

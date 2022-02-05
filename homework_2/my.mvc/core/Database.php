@@ -17,6 +17,8 @@ class Database{
         if(!mysqli_select_db(self::$dbConnect, DATABASE)){
             throw new \Exception("No table!"); 
         }
+        
+        mysqli_set_charset(self::$dbConnect, CHARSET);
     }
     
     public static function getInstance(){
@@ -26,7 +28,7 @@ class Database{
 	    return self::$instance;
     }
     
-    public function getAll($sql): array {
+    public static function getAll($sql): array {
         $result = mysqli_query(self::$dbConnect, $sql); 
         
         if(mysqli_num_rows($result) === 0){
@@ -40,7 +42,7 @@ class Database{
         return $resultRows;
     }
     
-    public function getOne($sql): array {
+    public static function getOne($sql): array {
         $result = mysqli_query(self::$dbConnect, $sql);
         
         if(mysqli_num_rows($result) === 0){

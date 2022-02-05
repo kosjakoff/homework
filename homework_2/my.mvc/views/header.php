@@ -2,17 +2,15 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title> my.cms </title> 
+		<title> my.cms </title>
 	</head>
     <body>
         <header> 
             <p>my.cms HEADER</p>
             <p>
             <?php 
-            if (isset($contents['title'])) {
-                echo $contents['title']; 
-            } elseif (isset($controller->title)) {
-                echo $controller->title;
+            if (isset($data['title'])) {
+                echo $data['title']; 
             }
             ?>
             </p>
@@ -24,15 +22,3 @@
             </div>
         </header> 
 
-        <?php 
-        if ($action) {
-            require("views/" . $action . ".php");
-        }
-        ?>
-        
-        <footer class="footer">
-        <p>FOOTER</p>
-    </footer>
-    </body>
-</html>
-     

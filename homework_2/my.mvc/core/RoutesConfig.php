@@ -2,7 +2,7 @@
 
 namespace core;
 
-class ConfigRoutes {
+class RoutesConfig {
 
     private function __construct()
     {
@@ -20,34 +20,33 @@ class ConfigRoutes {
                     "uri" => "page",
                     "controller" => "\\controllers\\PageController",
                     "params" => "",
-                    "action" => "getPages",
+                    "action" => "showPages",
                 ], [
                     "uri" => "page/([0-9]+)",
                     "controller" => "\\controllers\\PageController",
                     "params" => "$1",
-                    "action" => "getPage",
+                    "action" => "showPage",
                 ], [
                     "uri" => "users",
                     "controller" => "\\controllers\\UserController",
                     "params" => "",
-                    "action" => "getUsers",
+                    "action" => "showUsers",
                 ], [
                     "uri" => "users/([0-9]+)",
                     "controller" => "\\controllers\\UserController",
                     "params" => "$1",
-                    "action" => "getUser",
+                    "action" => "showUser",
                 ], [
                     "uri" => "products",
                     "controller" => "\\controllers\\ProductController",
                     "params" => "",
-                    "action" => "getProducts",
+                    "action" => "showProducts",
                 ], [
                     "uri" => "products/([0-9]+)",
                     "controller" => "\\controllers\\ProductController",
                     "params" => "$1",
-                    "action" => "getProduct",
-                ], 
-                
+                    "action" => "showProduct",
+                ],  
             ],
         ];
     }

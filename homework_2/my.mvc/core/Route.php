@@ -2,7 +2,7 @@
 
 namespace core;
 
-use \core\ConfigRoutes;
+use \core\RoutesConfig;
 
 class Route {
 
@@ -10,7 +10,7 @@ class Route {
     private $routes;
 
     private function __construct() {
-        $this->routes = ConfigRoutes::route();
+        $this->routes = RoutesConfig::route();
     }
 
     public static function getInstance() {
@@ -39,39 +39,41 @@ class Route {
         return $route = [];
     }
     
-    public function render() {
+    public function loadController() {    //not acyually function name
         $route = $this->route();
         
-        foreach ($route as $key=>$value) {
+        foreach ($route as $key => $value) {
+            
             $$key = $value;
         }
         
         if(class_exists($controller)) {
+        
             $controller = new $controller();
+        
+            
         } else {
+            
             $controller = new \controllers\Error();
             $action = "error_404";
+            $controller->$action();
         }
         
         if(method_exists($controller, $action)){
+            
             $params = explode("/", $params);
             $contents = call_user_func_array([$controller, $action], $params);
             
-            if (!$contents) {                           // is content
+            if (!$contents) {
+            
                 $controller = new \controllers\Error();
                 $action = "error_404";
-                $controller->$action;
+                $controller->$action();
             }
             
         } else {
+            
             throw new \Exception("Action with name: " . $action . " not found"); 
         }
-        
-        if (isset($controller->tamplate) && file_exists("views/" . $controller->tamplate . ".php")){
-            require_once("views/" . $controller->tamplate . ".php");
-        } elseif (isset($action)) {
-            require("views/" . $action . ".php");
-        }
-        
     }
 }
